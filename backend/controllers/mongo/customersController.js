@@ -1,9 +1,9 @@
-const users = require("../../models/mongo/users");
+const customers = require("../../models/mongo/customers");
 
 // R-Read อ่านข้อมูล
 exports.index = async (req, res, next) => {
 
-    let data = await users.find();
+    let data = await customers.find();
     
     res.status(200).json(data);
  
@@ -12,9 +12,16 @@ exports.index = async (req, res, next) => {
 //C-Create เพิ่มข้อมูล
 exports.insert = async (req,res,next) => {
     
-    let data = new users({
-username: req.body.username,
-email: req.body.email
+    let data = new customers({
+    customerID: req.body.customerID,
+    customerTitleName: req.body.customerTitleName,
+    customerFirstName: req.body.customerFirstName,
+    customerLastName: req.body.customerLastName,
+    customerAddress: req.body.customerAddress,
+    customerTel: req.body.customerTel,
+    customerEmail: req.body.customerEmail,
+    customerUserName: req.body.customerUserName,
+    customerPassword: req.body.customerPassword
     });
 
     data.save();

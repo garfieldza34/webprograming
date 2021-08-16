@@ -1,9 +1,9 @@
-const users = require("../../models/mongo/users");
+const products = require("../../models/mongo/products");
 
 // R-Read อ่านข้อมูล
 exports.index = async (req, res, next) => {
 
-    let data = await users.find();
+    let data = await products.find();
     
     res.status(200).json(data);
  
@@ -12,9 +12,13 @@ exports.index = async (req, res, next) => {
 //C-Create เพิ่มข้อมูล
 exports.insert = async (req,res,next) => {
     
-    let data = new users({
-username: req.body.username,
-email: req.body.email
+    let data = new products({
+       
+        productID: req.body.  productID,
+        productName: req.body.productName,
+        productPrice: req.body. productPrice,
+        productStock: req.body. productStock,
+        productUnit: req.body.productUnit
     });
 
     data.save();
@@ -26,17 +30,25 @@ email: req.body.email
 };
 //update ข้อมูล
 exports.update = async (req, res , next) => {
-    const id = "60ebbb81309b601da4011b91";
+    const id = "6119d04789ec050a94bc750b";
     const data = {
-        username: "Nostria",
-        email: "nostria@gmail.com"
-    };
+        productID:"8954",
+        productName: "Snapdragon895",
+        productPrice:"5000",
+        productStock:"90000",
+        productUnit:"30000"
+        
+};
+    
    
-    let update = await users.updateOne(
+    let update = await products.updateOne(
 {_id: id},
 {
-    username: data.username,
-    email: data.email
+    productID:data.productID,
+    productName: data.productName,
+    productPrice:data.productPrice ,
+    productStock:data.productStock,
+    productUnit:data.productUnit
 }
     );
     
@@ -53,8 +65,8 @@ exports.update = async (req, res , next) => {
 };
 // Delete ลบข้อมูล
 exports.delete = async (req, res, next) => {
-    const id = "60ebc26265b0e319f4473ed0"
-    const data = await users.deleteOne(
+    const id = "6119d04789ec050a94bc750b"
+    const data = await products.deleteOne(
         {_id: id }
     );
     if(data.deletedCount === 0){
