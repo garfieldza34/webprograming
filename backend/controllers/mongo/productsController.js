@@ -34,7 +34,7 @@ exports.update = async (req, res , next) => {
     const data = {
         productID:"8952",
         productName: "Snapdragon895",
-        productPrice:"5000",
+        productPrice:"5100",
         productStock:"90000",
         productUnit:"30000"
         
