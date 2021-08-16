@@ -32,7 +32,7 @@ exports.insert = async (req,res,next) => {
 exports.update = async (req, res , next) => {
     const id = "6119d04789ec050a94bc750b";
     const data = {
-        productID:"8954",
+        productID:"8952",
         productName: "Snapdragon895",
         productPrice:"5000",
         productStock:"90000",
