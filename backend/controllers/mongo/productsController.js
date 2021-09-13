@@ -30,7 +30,7 @@ exports.insert = async (req,res,next) => {
 };
 //update ข้อมูล
 exports.update = async (req, res , next) => {
-    const id = "6119d04789ec050a94bc750b";
+    const id = "6119d87205abc84c3074106c";
     const data = {
         productID:"8952",
         productName: "Snapdragon895",
