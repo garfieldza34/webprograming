@@ -1,6 +1,5 @@
 const users = require("../../models/mongo/users");
 
-// R-Read อ่านข้อมูล
 exports.index = async (req, res, next) => {
 
     let data = await users.find();
@@ -9,37 +8,39 @@ exports.index = async (req, res, next) => {
  
 };
 
-//C-Create เพิ่มข้อมูล
-exports.insert = async (req,res,next) => {
-    
-    let data = new users({
-username: req.body.username,
-email: req.body.email
+exports.insert = async (req, res, next) => {
+
+    let data = new users( {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
     });
 
     data.save();
+
     res.status(200).json({
-        message:"บันทึกข้อมูลเรียบร้อยแล้ว"
-    })
-
-
+        message: "บันทึกข้อมูลเรียบร้อยแล้ว"
+    });
 };
-//update ข้อมูล
-exports.update = async (req, res , next) => {
-    const id = "60ebbb81309b601da4011b91";
+
+exports.update = async (req, res, next) => {
+
+    const id = "60ebbc69f217432aa40790bd";
+
     const data = {
-        username: "Nostria",
-        email: "nostria@gmail.com"
-    };
-   
+        username: "thailand",
+        email: "thai@gmail.com"
+    }
+
     let update = await users.updateOne(
-{_id: id},
-{
-    username: data.username,
-    email: data.email
-}
+
+        {_id: id},
+        {
+            username: data.username,
+            email: data.email
+        }
     );
-    
+
     if(update.nModified === 0){
         res.status(400).json({
             error: "ไม่สามารถแก้ไขข้อมูลได้"
@@ -48,22 +49,27 @@ exports.update = async (req, res , next) => {
         res.status(200).json({
             data: "แก้ไขข้อมูลเรียบร้อยแล้ว"
         });
-    }    
+           
+    }
 
 };
-// Delete ลบข้อมูล
+
 exports.delete = async (req, res, next) => {
-    const id = "60ebc26265b0e319f4473ed0"
+
+    const id = "610754cb8ccdec0900f29f65";
+
     const data = await users.deleteOne(
-        {_id: id }
+        {_id: id}
     );
-    if(data.deletedCount === 0){
+
+    if(data.deleteCount === 0){
         res.status(400).json({
-            error:"ไม่สามารถลบข้อมูลได้"
-        })
-    }else{
-        res.status(200).json({
-            message:"ลบข้อมูลเรียบร้อยแล้ว"
-        })
+            error: "ไม่สามารถลบข้อมูลได้"
+        });
+    } else {
+        res.status(400).json({
+            massage: "ลบข้อมูลเรียบร้อยแล้ว"
+        });
     }
+
 };

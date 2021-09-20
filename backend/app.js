@@ -5,6 +5,8 @@ const logger = require('morgan');
 
 const mongoose = require("mongoose");
 
+const cors = require("cors");
+
 //const indexRouter = require('./routes/index');
 //const usersRouter = require('./routes/users');
 
@@ -14,6 +16,7 @@ const customersRouter_mongo = require("./routes/mongo/customers");
 const productsRouter_mongo = require("./routes/mongo/products")
 
 const app = express();
+app.use(cors());
 
 mongoose.connect("mongodb+srv://admin:gf0877374410@cluster0.dz5xb.mongodb.net/rmutl?retryWrites=true&w=majority", {
     useNewUrlParser: true,
