@@ -41,9 +41,13 @@
             เข้าสู่ระบบ
           </button>
 
-          <button  @click="cancel" class="btn btn-danger" type="button">ยกเลิก</button>
+          <button @click="cancel" class="btn btn-danger" type="button">
+            ยกเลิก
+          </button>
 
-          <button @click="register" class="btn btn-success" type="button">สมัครสมาชิก</button>
+          <button @click="register" class="btn btn-success" type="button">
+            สมัครสมาชิก
+          </button>
         </div>
       </div>
 
@@ -55,6 +59,8 @@
 
 
 <script>
+import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -66,23 +72,52 @@ export default {
 
   methods: {
     login() {
-      
+      if (this.username.trim() === "") {
+        // alert("กรุณากรอกชื่อผู้ใช้");
+        Swal.fire("คำเตือน", "กรุณากรอกชื่อผู้ใช้", "warning");
+      } else if (this.password === "") {
+        // alert("กรุณากรอกรหัสผ่าน");
+        Swal.fire("คำเตือน", "กรุณากรอกรหัสผ่าน", "warning");
+      } else {
+        //console.log(this.username.trim());
+        //console.log(this.password.trim());
+        let data = {
+          username: this.username.trim(),
+          password: this.password.trim(),
+        };
 
-      if(this.username.trim() === ""){
-          alert("กรุณากรอกชื่อผู้ใช้");
-      }else if(this.password ===""){
-          alert("กรุณากรอกรหัสผ่าน");
-      }else{
-            console.log(this.username.trim());
-            console.log(this.password.trim());
+        axios
+          .post("http://localhost:3000/mongo/users/login", data)
+          .then(function (res) {
+            console.log(res.data);
+
+            if (res.data.status === 0) {
+              //ถ้าผู้ใช้ไม่มี
+              //alert(res.data.messags);
+              Swal.fire("คำเตือน", res.data.message, "error");
+              alert(res.data.message);
+            } else if (res.data.status === 1) {
+
+              //ถ้าผู้ใช้มี
+              localStorage.setItem("token", res.data.token);
+              localStorage.setItem("status", res.data.status);
+              localStorage.setItem("email", res.data.email);
+              localStorage.setItem("username", res.data.username);
+            
+            }
+          });
+          setTimeout(() =>{
+              this.$router.push({ name: "Home"});
+          }, 1000);
+          
       }
     },
-    cancel(){
-        this.username=""
-        this.password=""
+    cancel() {
+      this.username = "";
+      this.password = "";
     },
-    register(){
-        this.$router.push({name: "Register"})
+    register() {
+      this.$router.push({ name: "Register" });
     },
   },
 };

@@ -18,7 +18,7 @@ exports.insert = async (req, res, next) => {
 
     data.save();
 
-    res.status(200).json({
+    res.status(201).json({
         message: "บันทึกข้อมูลเรียบร้อยแล้ว"
     });
 };
@@ -71,5 +71,39 @@ exports.delete = async (req, res, next) => {
             massage: "ลบข้อมูลเรียบร้อยแล้ว"
         });
     }
+
+};
+
+exports.login = async (req, res, next) =>{
+     //console.log(req.body);
+     //console.log(req.body.username);
+     //console.log(req.body.password);
+
+    let data = await users.find({ $and: [ 
+        { username: req.body.username },
+        { password: req.body.password }
+     ] });
+
+     console.log(data);
+     if(data.length > 0){
+        console.log(data.length)
+        console.log("มีข้อมูล")
+        res.status(200).json({
+            username:data[0].username,
+            email:data[0].email,
+            token:"00000000000",
+            status:1,
+            message:"เข้าสู่ระบบเรียบร้อย"
+        })
+     }else{
+        console.log(data.length)
+        console.log("ไม่มีข้อมูล")
+        res.status(200).json({
+            status:0,
+            message:"ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง"
+        })
+     }
+
+
 
 };
