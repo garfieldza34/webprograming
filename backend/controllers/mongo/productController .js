@@ -1,4 +1,6 @@
+
 const products = require("../../models/mongo/products");
+const bcrypt = require("bcryptjs");
 
 // R-Read อ่านข้อมูล
 exports.index = async (req, res, next) => {
@@ -30,13 +32,13 @@ exports.insert = async (req,res,next) => {
 };
 //update ข้อมูล
 exports.update = async (req, res , next) => {
-    const id = "6119d87205abc84c3074106c";
+    const id = "6119d04789ec050a94bc750b";
     const data = {
-        productID:"8952",
-        productName: "Snapdragon895",
-        productPrice:"5100",
-        productStock:"90000",
-        productUnit:"30000"
+        productID:"42171",
+        productName: "egg",
+        productPrice:"200",
+        productStock:"50",
+        productUnit:"100"
         
 };
     

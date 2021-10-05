@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
     {
-        productID :String,
-        productName :String,
-        productPrice :Number,
-        productStock :Number,
-        productUnit :String
-
+        productID: String,
+        productName: String,
+        productPrice: String,
+        productStock: String,
+        productUnit: String
+       
     },
     {
         timestamps: true,

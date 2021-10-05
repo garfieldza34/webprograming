@@ -13,15 +13,15 @@ exports.index = async (req, res, next) => {
 exports.insert = async (req,res,next) => {
     
     let data = new customers({
-    customerID: req.body.customerID,
-    customerTitleName: req.body.customerTitleName,
-    customerFirstName: req.body.customerFirstName,
-    customerLastName: req.body.customerLastName,
-    customerAddress: req.body.customerAddress,
-    customerTel: req.body.customerTel,
-    customerEmail: req.body.customerEmail,
-    customerUserName: req.body.customerUserName,
-    customerPassword: req.body.customerPassword
+        customerID: req.body.ustomerID,
+        customerTitleName: req.body.customerTitleName,
+        customerFirstName:req.body.customerFirstName,
+        customerLastName: req.body.customerLastName,
+        customerAddress: req.body.customerAddress,
+        customerTel: req.body.customerTel,
+        customerEmail: req.body.customerEmail,
+        customerUserName: req.body.customerUserName,
+        customerPassword: req.body.customerPassword
     });
 
     data.save();
@@ -33,17 +33,32 @@ exports.insert = async (req,res,next) => {
 };
 //update ข้อมูล
 exports.update = async (req, res , next) => {
-    const id = "60ebbb81309b601da4011b91";
+    const id = "61191824405bf23d04f7949a";
     const data = {
-        username: "Nostria",
-        email: "nostria@gmail.com"
-    };
+        customerID :"421711111111",
+        customerTitleName :"mr",
+        customerFirstName :"tanak111itqweqeq",
+        customerLastName :"keaw11pinit",
+        customerAddress :"19/2110",
+        customerTel :"094601301130",
+        customerEmail :"tanakit42171@gmail.com",
+        customerUserName :"tanakit42171",
+        customerPassword :"0946013030",
+};
+    
    
-    let update = await users.updateOne(
+    let update = await customers.updateOne(
 {_id: id},
 {
-    username: data.username,
-    email: data.email
+    customerID: data.ustomerID,
+    customerTitleName: data.customerTitleName,
+    customerFirstName:data.customerFirstName,
+    customerLastName: data.customerLastName,
+    customerAddress: data.customerAddress,
+    customerTel: data.customerTel,
+    customerEmail: data.customerEmail,
+    customerUserName: data.customerUserName,
+    customerPassword: data.customerPassword
 }
     );
     
@@ -60,8 +75,8 @@ exports.update = async (req, res , next) => {
 };
 // Delete ลบข้อมูล
 exports.delete = async (req, res, next) => {
-    const id = "60ebc26265b0e319f4473ed0"
-    const data = await users.deleteOne(
+    const id = "6119199e5e30ea496422a454"
+    const data = await customers.deleteOne(
         {_id: id }
     );
     if(data.deletedCount === 0){

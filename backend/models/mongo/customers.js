@@ -10,7 +10,6 @@ const schema = new Schema(
         customerAddress: String,
         customerTel: String,
         customerEmail: String,
-        customerEmail: String,
         customerUserName: String,
         customerPassword: String
     },
